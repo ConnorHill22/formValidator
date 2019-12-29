@@ -3,48 +3,48 @@
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div> -->
+    </div>-->
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
+:root {
+  --primary-color: #11a234;
+  --secondary-color: #ffffff;
+  --font-color: #3c3c3c;
+  --bg-color: #ffffff;
+  --heading-color: #707070;
+  --error-color: #ed2f2f;
+  --border-color: #707070;
 
- :root {
-    --primary-color: #11A234;
-    --secondary-color: #ffffff;
-    --font-color: #3C3C3C;
-    --bg-color: #ffffff;
-    --heading-color: #707070;
-    --error-color: #ED2F2F;
-    --border-color: #707070;
-
-    --auth-height: 60vh;
-    --input-container-height: 5vh;
-    --input-height: 4vh;
-    --input-min-height: 20px;
+  --auth-height: 60vh;
+  --input-container-height: 5vh;
+  --input-height: 4vh;
+  --input-min-height: 20px;
 }
 
 [data-theme="dark"] {
-    --primary-color: #9A97F3;
-    --secondary-color: #818cab;
-    --font-color: #e1e1ff;
-    --bg-color: #161625;
-    --heading-color: #818cab;
+  --primary-color: #9a97f3;
+  --secondary-color: #818cab;
+  --font-color: #e1e1ff;
+  --bg-color: #161625;
+  --heading-color: #818cab;
 }
 
-// input[type=text], input[type=password] {
-//   outline-style:none !important;
-//   box-shadow:none !important;
-//   border-color:transparent !important;
-// }
+input[type="text"],
+input[type="password"] {
+  outline-style: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
 
-// input:-webkit-autofill,
-// input:-webkit-autofill:hover, 
-// input:-webkit-autofill:focus, 
-// input:-webkit-autofill:active  {
-//     -webkit-box-shadow: 0 0 0 30px var(--bg-color) inset !important;
-// }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--bg-color) inset !important;
+}
 
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

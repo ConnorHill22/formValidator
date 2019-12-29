@@ -16,20 +16,20 @@
 </template>
 
 <script>
-import HomePicture from '@/components/svgs/HomePicture'
-import Login from '@/components/auth/Login'
+import HomePicture from "@/components/svgs/HomePicture";
+import Login from "@/components/auth/Login";
 
 export default {
+  name: "Login",
   components: {
     HomePicture,
     Login
   }
-
 };
 </script>
 
 <style lang="scss">
-@import '../../scss/_variables.scss';
+@import "../../scss/_variables.scss";
 
 #container {
   height: 100vh;
@@ -64,4 +64,30 @@ export default {
   float: left;
 }
 
+#buttons_div {
+  display: inline-flex;
+  margin-top: 20px;
+}
+
+.button {
+  margin-right: 20px;
+  border-radius: 15px;
+  width: 125px;
+  height: 40px;
+  min-height: var(--input-min-height);
+  font-size: 1rem;
+  min-height: 20px;
+}
+
+#login_button {
+  background-color: var(--primary-color);
+  border: var(--primary-color) solid 1px;
+  color: var(--bg-color);
+}
+
+#signup_button {
+  background-color: var(--bg-color);
+  border: var(--primary-color) solid 1px;
+  color: var(--primary-color);
+}
 </style>
