@@ -17,11 +17,19 @@
   --heading-color: #707070;
   --error-color: #ed2f2f;
   --border-color: #707070;
+  --fadded-font-color: #a7a7a7;
 
   --auth-height: 60vh;
   --input-container-height: 5vh;
   --input-height: 4vh;
   --input-min-height: 20px;
+  --input-max-height: 50px;
+}
+
+h1 {
+  color: var(--heading-color);
+  font-weight: 100;
+  font-size: 40px;
 }
 
 [data-theme="dark"] {
@@ -44,6 +52,46 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--bg-color) inset !important;
+}
+
+.input_div {
+  margin: 10px 0 10px 0;
+}
+
+.input_container {
+  position: relative;
+  border: var(--border-color) solid 1px;
+  border-radius: 15px;
+  width: 100%;
+  height: var(--input-container-height);
+  min-height: var(--input-min-height);
+  max-height: var(--input-max-height);
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+}
+
+.input_container:hover {
+  border: var(--primary-color) solid 1px;
+}
+
+.input_container:focus-within {
+  box-shadow: 0 0 5px var(--primary-color) !important;
+  border: 1px solid var(--primary-color) !important;
+}
+.input {
+  position: absolute;
+  top: 50%;
+  width: 80%;
+  margin-left: 15px;
+  height: var(--input-height);
+  min-height: var(--input-min-height);
+  border: none;
+  //background-color: red;//var(--bg-color) !important;
+  font-size: 25px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--font-color);
 }
 
 #app {

@@ -8,7 +8,7 @@
       </div>
       <div id="right">
         <div id="right_container">
-          <Login />
+          <LoginForm />
         </div>
       </div>
     </div>
@@ -17,13 +17,13 @@
 
 <script>
 import HomePicture from "@/components/svgs/HomePicture";
-import Login from "@/components/auth/Login";
+import LoginForm from "@/components/auth/Login_Form";
 
 export default {
   name: "Login",
   components: {
     HomePicture,
-    Login
+    LoginForm
   }
 };
 </script>
@@ -60,6 +60,8 @@ export default {
 }
 
 #right_container {
+  max-width: 450px;
+  width: 90%;
   padding-left: 5vw;
   float: left;
 }
