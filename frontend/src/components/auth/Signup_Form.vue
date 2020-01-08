@@ -37,20 +37,19 @@
     </div>
     <div id="signup_navigation">
       <div @click.prevent="decreaseIndex">
-          <GreenArrow  class="navigationGreenArrow" id="leftGreenArrowNav" />
+        <GreenArrow class="navigationGreenArrow" id="leftGreenArrowNav" />
       </div>
       <Circles :solid_green="pageIndex" />
       <div @click.prevent="increaseIndex">
-          <GreenArrow  class="navigationGreenArrow" id="rightGreenArrowNav" />
+        <GreenArrow class="navigationGreenArrow" id="rightGreenArrowNav" />
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
 import Circles from "@/components/auth/_helpers/Circles.vue";
-import GreenArrow from "@/components/svgs/GreenArrow.vue"
+import GreenArrow from "@/components/svgs/GreenArrow.vue";
 export default {
   name: "SignupForm",
   components: {
@@ -59,36 +58,34 @@ export default {
   },
   data() {
     return {
-      pageIndex: 1,
-    }
+      pageIndex: 1
+    };
   },
   methods: {
     increaseIndex: function() {
-      return this.pageIndex = this.pageIndex + 1;
+      return (this.pageIndex = this.pageIndex + 1);
     },
     decreaseIndex: function() {
-      return this.pageIndex --
-    },
+      return this.pageIndex--;
+    }
   }
 };
 </script>
 
 <style scoped lang="scss">
-
 #general_div {
-  margin: 20px 0 30px 0;
+  margin: 0px 0 0px 0;
 }
 
-
-#name_div{
+#name_div {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 47.5% 47.5%;
   column-gap: 5%;
 }
 
-.input_container{
-  margin-top: 30px;
+.input_container {
+  margin-top: 0.5rem;
 }
 
 #show_password_div {
@@ -102,15 +99,20 @@ export default {
   align-self: center;
 }
 
-#signup_navigation{
+#signup_navigation {
   position: relative;
   height: 50px;
   display: grid;
   align-items: center;
 }
 
-.navigationGreenArrow:hover{
+.navigationGreenArrow:hover {
   cursor: pointer;
+}
+
+.navigationGreenArrow {
+  height: 2rem;
+  width: 2rem;
 }
 
 #leftGreenArrowNav {
@@ -121,7 +123,7 @@ export default {
 }
 
 #leftGreenArrowNav:hover {
-  transform: rotate(180deg) scale(1.3)!important;
+  transform: rotate(180deg) scale(1.3) !important;
   transition: all ease 500ms;
 }
 
@@ -130,14 +132,18 @@ export default {
   right: 0;
   top: 0;
   animation: pulse 2s infinite;
-  animation-timing-function: linear;   
+  animation-timing-function: linear;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.5);}
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
-
-
 </style>

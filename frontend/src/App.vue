@@ -20,16 +20,17 @@
   --fadded-font-color: #a7a7a7;
 
   --auth-height: 60vh;
-  --input-container-height: 5vh;
+  --input-container-height: 30px;
   --input-height: 4vh;
-  --input-min-height: 20px;
+  --input-min-height: 15px;
   --input-max-height: 50px;
 }
 
 h1 {
   color: var(--heading-color);
   font-weight: 100;
-  font-size: 40px;
+  font-size: 2rem;
+  //font-size: 40px;
 }
 
 [data-theme="dark"] {
@@ -84,11 +85,8 @@ input:-webkit-autofill:active {
   top: 50%;
   width: 80%;
   margin-left: 15px;
-  height: var(--input-height);
-  min-height: var(--input-min-height);
   border: none;
-  //background-color: red;//var(--bg-color) !important;
-  font-size: 25px;
+  // font-size: 25px;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   color: var(--font-color);

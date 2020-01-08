@@ -62,8 +62,8 @@ export default {
 #right_container {
   padding-left: 5vw;
   float: left;
-  max-width: 600px;
-  width: 90%;
+  // max-width: 600px;
+  // width: 90%;
 }
 
 #buttons_div {
