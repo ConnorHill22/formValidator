@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 <template>
   <div id="login_container">
     <h1>Welcome to Analytics Corp.</h1>

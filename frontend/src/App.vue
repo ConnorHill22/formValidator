@@ -52,6 +52,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px var(--bg-color) inset !important;
   -webkit-box-shadow: 0 0 0 30px var(--bg-color) inset !important;
 }
 
@@ -69,7 +70,7 @@ input:-webkit-autofill:active {
   max-height: var(--input-max-height);
   outline: none;
   padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
+  margin-top: 0.5rem;  
 }
 
 .input_container:hover {
