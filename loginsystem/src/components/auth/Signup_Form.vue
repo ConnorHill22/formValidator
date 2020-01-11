@@ -2,39 +2,64 @@
   <div id="singup_div">
     <h1 id= "title">Sign Up</h1>
     <div id="general_div">
-      <div id="name_div">
+      <div class="form_Group" id="name_div">
         <div id="first_name_container">
           <div class="form-group input_container" :class="{'error':$v.first_name.$error}"  id="name" >
             <input 
-              v-model.trim="first_name"
+              type="text" 
+              id="fname_input" 
+              class="input" 
+              placeholder="First Name" 
+              v-model="$v.first_name.$model"
             />
           </div>
           <div class = "error required_error" v-if="$v.first_name.$error">
             First Name is required
           </div>
         </div>
-        <!-- <div id="last_name_container">
-          <div class="input_container" id="name">
+        <div id="last_name_container">
+          <div class="input_container" :class="{'error':$v.last_name.$error}" id="name">
             <input 
               type="text" 
               id="lname_input" 
               class="input" 
               placeholder="Last Name" 
-              v-model="last_name"
+              v-model="$v.last_name.$model"
             />
           </div>
-          <div class = "error required_error" v-if="!$v.last_name.required">
+          <div class = "error required_error" v-if="$v.last_name.$error">
             Last Name is required
           </div>
-        </div> -->
-
-      </div>
-      <div id="email_div">
-        <div id="email" class="input_container">
-          <input type="text" id="email_input" class="input" placeholder="Email" />
         </div>
       </div>
-      <!-- <div id="password_div">
+      <div class="form_Group" id="email_div">
+        <div id="email" class="input_container" :class="{'error':$v.email.$error}">
+          <input 
+            type="email" 
+            id="email_input" 
+            class="input" 
+            placeholder="Email" 
+            v-model="$v.email.$model"
+            @focus="email_input_selected=true"
+            @blur="email_input_selected=false"
+          />
+        </div>
+        <div id="email_error" v-if="email_input_selected">
+          <div id="input_email_error">
+            <div class="error_row">
+              <p>Email required</p>
+              <span v-if="!$v.email.required"><img class="feedbackIcon" src="../../../public/wrong.svg"></span>
+              <span v-if="$v.email.required"><img class="feedbackIcon" src="../../../public/right.svg"></span>
+            </div>
+            <div class="error_row">
+              <p>Email required</p>
+              <span v-if="!$v.email.email"><img class="feedbackIcon" src="../../../public/wrong.svg"></span>
+              <span v-if="$v.email.email"><img class="feedbackIcon" src="../../../public/right.svg"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div id="password_div" class="form_Group">
         <div id="password" class="input_container">
           <input 
             :type="password_Input_Type" 
@@ -60,7 +85,7 @@
           Number is required
         </div>
       </div> -->
-      <div id="confirm_password_div">
+      <div class="form_Group" id="confirm_password_div">
         <div id="confirm_password" class="input_container">
           <input
             :type="password_Input_Type"
@@ -92,11 +117,14 @@ export default {
 
   data() {
     return {
-      first_name: "",
+      first_name:'',
       last_name: "",
       email: "",
+      email_input_selected:false,
       password: "",
+      password_input_selected:false,
       confirm_password: "",
+      confirm_input_selected:false,
       password_Input_Type: "password"
     }
   },
@@ -104,24 +132,24 @@ export default {
     first_name: {
       required
     },
-    // last_name: {
-    //   required
-    // },
-    // email: {
-    //   required,
-    //   email
-    // },
-    // password: {
-    //   required,
-    //   minLength: minLength(8),
-    //   capital_Letter:(password) => {return (/[A-Z]/.test(password))},
-    //   lower_Letter:(password) => {return (/[a-z]/.test(password))},
-    //   conatain_number:(password) => {return (/[0-9]/.test(password))}
-    // },
-    // confirm_password: {
-    //   required,
-    //   sameASPassword: sameAs("password")
-    // }
+    last_name: {
+      required
+    },
+    email: {
+      required,
+      email
+    },
+    password: {
+      required,
+      minLength: minLength(8),
+      capital_Letter:(password) => {return (/[A-Z]/.test(password))},
+      lower_Letter:(password) => {return (/[a-z]/.test(password))},
+      conatain_number:(password) => {return (/[0-9]/.test(password))}
+    },
+    confirm_password: {
+      required,
+      sameASPassword: sameAs("password")
+    }
   }
 };
 </script>
@@ -138,6 +166,11 @@ export default {
   grid-template-rows: auto;
   grid-template-columns: 47.5% 47.5%;
   column-gap: 5%;
+}
+
+.form_Group {
+  position: absolute;
+  height: 100px;
 }
 
 .input_container {
@@ -170,6 +203,15 @@ export default {
 #haveAccount_p {
   color: var(--primary-color);
   text-decoration: none !important;
+}
+
+.feedbackIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.email_error{
+  position: absolute;
 }
 
 
