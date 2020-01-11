@@ -2,14 +2,14 @@
   <div id="singup_div">
     <h1>Welcome to Analytics Corp.</h1>
     <div id="general_div">
-      <div id="name_div">
+      <!-- <div id="name_div">
         <div class="input_container" id="name">
           <input type="text" id="fname_input" class="input" placeholder="First Name" />
         </div>
         <div class="input_container" id="name">
           <input type="text" id="lname_input" class="input" placeholder="Last Name" />
         </div>
-      </div>
+      </div>-->
       <div id="email_div">
         <div id="email" class="input_container">
           <input type="text" id="email_input" class="input" placeholder="Email" />
