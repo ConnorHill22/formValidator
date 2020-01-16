@@ -1,6 +1,6 @@
 <template>
   <div id="login_container">
-    <h1>Welcome to Analytics Corp.</h1>
+    <h1>Sign In</h1>
     <div id="form_div">
       <div id="email_or_username_div" class="input_div">
         <label for="username">Email or Username</label>

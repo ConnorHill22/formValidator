@@ -29,7 +29,7 @@
 h1 {
   color: var(--heading-color);
   font-weight: 100;
-  font-size: 2rem;
+  font-size: 3rem;
   //font-size: 40px;
 }
 
