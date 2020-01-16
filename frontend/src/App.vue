@@ -42,6 +42,7 @@ h1 {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   outline-style: none !important;
   box-shadow: none !important;
@@ -70,7 +71,6 @@ input:-webkit-autofill:active {
   max-height: var(--input-max-height);
   outline: none;
   padding: 3px 0px 3px 3px;
- 
 }
 
 .input_container:hover {
