@@ -2,6 +2,9 @@
   <div id="singup_div">
     <h1 id="title">Sign Up</h1>
     <div id="general_div">
+      <div id="error_div">
+        <p></p>
+      </div>
       <div class="form_Group" id="name_div">
         <div id="first_name_container">
           <label for="first_name">First Name*</label>
@@ -13,6 +16,14 @@
               class="input"
               v-model="$v.first_name.$model"
             />
+            <div class="inline_validator">
+              <span v-if="$v.first_name.$invalid">
+                <img class="feedbackIcon" src="../../../public/wrong.svg" />
+              </span>
+              <span v-if="!$v.first_name.$invalid">
+                <img class="feedbackIcon" src="../../../public/right.svg" />
+              </span>
+            </div>
           </div>
         </div>
         <div id="last_name_container">
@@ -25,6 +36,14 @@
               class="input"
               v-model="$v.last_name.$model"
             />
+            <div class="inline_validator">
+              <span v-if="$v.last_name.$invalid">
+                <img class="feedbackIcon" src="../../../public/wrong.svg" />
+              </span>
+              <span v-if="!$v.last_name.$invalid">
+                <img class="feedbackIcon" src="../../../public/right.svg" />
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -40,6 +59,14 @@
             @focus="email_input_selected=true"
             @blur="email_input_selected=false"
           />
+          <div class="inline_validator">
+            <span v-if="$v.email.$invalid">
+              <img class="feedbackIcon" src="../../../public/wrong.svg" />
+            </span>
+            <span v-if="!$v.email.$invalid">
+              <img class="feedbackIcon" src="../../../public/right.svg" />
+            </span>
+          </div>
         </div>
         <div id="email_error_container" class="error_container" v-if="email_input_selected">
           <div class="error_box_container">
@@ -59,7 +86,7 @@
       </div>
       <div id="password_div" class="form_Group">
         <label for="password">Password*</label>
-        <div id="password" class="input_container" :class="{'error':$v.password.$invalid}" >
+        <div id="password" class="input_container" :class="{'error': passwordError}" >
           <input
             name="password"
             :type="password_Input_Type"
@@ -69,6 +96,14 @@
             @focus="password_input_selected=true"
             @blur="password_input_selected=false"
           />
+          <div class="inline_validator">
+            <span v-if="$v.password.$invalid">
+              <img class="feedbackIcon" src="../../../public/wrong.svg" />
+            </span>
+            <span v-if="!$v.password.$invalid">
+              <img class="feedbackIcon" src="../../../public/right.svg" />
+            </span>
+          </div>
         </div>
         <div id="password_validation_div" v-if="password_input_selected">
           <div class= "error_box_container">
@@ -108,10 +143,10 @@
             <div class="error_row">
               <p>Number required</p>
               <div>
-                <span v-if="!$v.password.conatain_number">
+                <span v-if="!$v.password.contain_number">
                   <img class="feedbackIcon" src="../../../public/wrong.svg" />
                 </span>
-                <span v-if="$v.password.conatain_number">
+                <span v-if="$v.password.contain_number">
                   <img class="feedbackIcon" src="../../../public/right.svg" />
                 </span>
               </div>
@@ -121,7 +156,7 @@
       </div>
       <div class="form_Group" id="confirm_password_div" >
         <label for="c_password">Confirm Password*</label>
-        <div id="confirm_password" class="input_container" :class="{'error':$v.confirm_password.$invalid}">
+        <div id="confirm_password" class="input_container" :class="{'error': matchError}">
           <input
             name="c_password"
             :type="password_Input_Type"
@@ -131,6 +166,14 @@
             @focus="confirm_input_selected=true"
             @blur="confirm_input_selected=false"
           />
+          <div class="inline_validator">
+            <span v-if="$v.confirm_password.$invalid">
+              <img class="feedbackIcon" src="../../../public/wrong.svg" />
+            </span>
+            <span v-if="!$v.confirm_password.$invalid">
+              <img class="feedbackIcon" src="../../../public/right.svg" />
+            </span>
+          </div>
         </div>
         <div id="password_validation_div" v-if="confirm_input_selected ">
           <div class= "error_box_container">
@@ -160,7 +203,7 @@
       </div>
     </div>
     <div id="buttons">
-      <input class="button" type="button" value="Sign Up" id="login_button" />
+      <input :disabled="!submitEnable" :class="{'submitDisabled': !submitEnable}" class="login_button button" type="button" value="Sign Up" />
       <router-link to="/" id="haveAccount_p">
         <p>Have an account? Click to sign in</p>
       </router-link>
@@ -199,8 +242,45 @@ export default {
     min8Characters() {
       return (this.password== "" ? false : this.$v.password.minLength)
     },
+    passwordError() {
+        if(this.password =="") {
+          return false
+        } else if(
+        !this.$v.password.required ||
+        !this.$v.password.minLength ||
+        !this.$v.password.lower_Letter ||
+        !this.$v.password.contain_number ||
+        !this.$v.password.capital_Letter){
+          return true
+        } else {return false}
+    },
+    matchError() {
+      return (this.confirm_password== "" ? false : !this.$v.confirm_password.sameASPassword)
+    },
     matchPassword() {
-      return (this.confirm_password== "" ? false : this.$v.confirm_password.sameASPassword)
+      if(this.confirm_password =="") {
+        return false
+      } else if(
+        this.$v.confirm_password.required &&
+        this.$v.confirm_password.sameASPassword){
+          return true
+      } else {return false}
+    },
+    submitEnable() {
+      if( //If any errors return true then return false
+        this.$v.first_name.$invalid ||
+        this.$v.last_name.$invalid ||
+        this.$v.email.$invalid ||
+        this.$v.password.$invalid ||
+        this.$v.confirm_password.$invalid
+      ){ return false
+      } else {return true}
+    }
+  },
+  methods: {
+    submit() {
+      //Front end Validation
+
     }
   },
   validations: {
@@ -211,9 +291,11 @@ export default {
       required
     },
     email: {
+      required,
       email
     },
     password: {
+      required,
       minLength: minLength(8),
       capital_Letter: password => {
         return /[A-Z]/.test(password);
@@ -221,11 +303,12 @@ export default {
       lower_Letter: password => {
         return /[a-z]/.test(password);
       },
-      conatain_number: password => {
+      contain_number: password => {
         return /[0-9]/.test(password);
       }
     },
     confirm_password: {
+      required,
       sameASPassword: sameAs("password")
     }
   }
@@ -251,6 +334,14 @@ export default {
 .error {
   color: red;
   border-color: red;
+}
+
+.inline_validator {
+  height: 100%;
+  display: grid;
+  align-items: center;
+  position: absolute;
+  right: 10px;
 }
 
 #show_password_div {
@@ -337,6 +428,28 @@ export default {
   grid-template-columns: 90% 10%;
   grid-template-rows: auto auto;
   align-items: center;
+  // height: 30px;
+}
+
+.button {
+  margin-right: 20px;
+  border-radius: 15px;
+  width: 125px;
+  height: 40px;
+  min-height: var(--input-min-height);
+  font-size: 1rem;
+  min-height: 20px;
+}
+
+.login_button {
+  background-color: var(--primary-color);
+  border: var(--primary-color) solid 1px;
+  color: var(--bg-color);
+}
+
+.submitDisabled{
+  cursor: default !important;
+  opacity: 0.3;
 }
 
 </style>

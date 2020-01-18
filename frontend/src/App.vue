@@ -83,6 +83,7 @@ input:-webkit-autofill:active {
 }
 .input {
   position: absolute;
+  padding: 0;
   top: 50%;
   width: 80%;
   margin-left: 15px;

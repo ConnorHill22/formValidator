@@ -71,25 +71,4 @@ export default {
   margin-top: 20px;
 }
 
-.button {
-  margin-right: 20px;
-  border-radius: 15px;
-  width: 125px;
-  height: 40px;
-  min-height: var(--input-min-height);
-  font-size: 1rem;
-  min-height: 20px;
-}
-
-#login_button {
-  background-color: var(--primary-color);
-  border: var(--primary-color) solid 1px;
-  color: var(--bg-color);
-}
-
-#signup_button {
-  background-color: var(--bg-color);
-  border: var(--primary-color) solid 1px;
-  color: var(--primary-color);
-}
 </style>
